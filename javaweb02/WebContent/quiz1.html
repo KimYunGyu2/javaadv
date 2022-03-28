@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+</head>
+<body>
+<form>
+이름 <input type="text" name="id" required><br>
+생년월일 <input type="text" name="year"> 년  
+<input type="text" name="month"> 월  
+<input type="text" name="day"> 일<br>
+나이 <input type="number" name="age" min="1" max="120"><br>
+성별<input type="radio" name="gender2" value="남">남자
+<input type="radio" name="gender2" value="여">여자 <br>
+폰번호<select name="num1">
+			<option value="010">010</option>
+			<option value="019">019</option>
+			<option value="016">016</option>		
+		</select>
+		 - <input type="text" name="num2">
+		 - <input type="text" name="num3"><br>
+주소 <input type="text" name="address"><br>
+자기소개<br><textarea name="comment" rows="10" cols="50"></textarea>
+<br>
+<input type="reset"> <button> 제출 </button>
+</form>
+
+</body>
+</html>
