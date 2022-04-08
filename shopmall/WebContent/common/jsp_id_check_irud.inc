@@ -7,4 +7,4 @@ if(cust_id.isEmpty()) {
 			+"</script>");
 	}
 	
-
+%>
