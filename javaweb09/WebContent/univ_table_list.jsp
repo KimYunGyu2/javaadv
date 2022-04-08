@@ -48,7 +48,7 @@
 
 
 <div class = "container bg-warning shadow mx-auto mt-5 p-5 w-75">
-<div class="alert alert-light" role="alert" align=center>
+<div class="alert alert-warning" role="alert" align=center>
   학생 정보 목록
 </div>
 <table class="table table-striped table-hover">
