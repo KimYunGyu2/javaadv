@@ -8,8 +8,8 @@ public class ProductDTO {
 	private String pmanu;      //상품제조사
 	private String pcate;      //상품분류
 	private String pcondi;     //신상품 중고품 재고품
-	private String pimage;
-	
+	private String pimage;      //상품사진
+
 	
 	
 	
@@ -60,13 +60,14 @@ public class ProductDTO {
 	}
 	public String getPimage() {
 		return pimage;
-	}
+	}	
 	
-		
+	
 	
 	public ProductDTO() {
-		
+
 	}
+	
 	
 	public ProductDTO(String pid, String pname, String pprice, String pdesc, String pmanu, String pcate,
 			String pcondi, String pimage) {

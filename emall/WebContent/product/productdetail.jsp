@@ -3,13 +3,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	String uid  = (String) session.getAttribute("id");
+	String uid = (String) session.getAttribute("id");
 	if (uid == null) {
 		response.sendRedirect("/user/login.jsp");
 		return;
-	} // 세션 정보를 확인해서 로그인 상태인지 확인한 후 진입 허용
-	
-	
+	} //세션 정보를 확인해서 로그인 상태인지 확인한후 진입 허용 
 %>
 <!DOCTYPE html>
 <html>
@@ -53,10 +51,11 @@
 					<b>상품코드 : <%=product.getPid()%></b>
 				<p>
 					<b>상품가격 : <%=product.getPprice()%></b> 
-				<p>
-					<a href="orderconfirm.jsp?pid=<%=product.getPid() %>&pprice=<%=product.getPprice() %>&pname=<%=product.getPname() %>" class="btn btn-success" role="button">주문</a>
-								
-					<a href="productlist.jsp"	class="btn btn-secondary">상품목록</a>
+				<p>	
+						<a href="orderconfirm.jsp?pid=<%=product.getPid() %>&pprice=<%=product.getPprice() %>&pname=<%=product.getPname()%>" class="btn btn-success" role="button">주문</a>
+
+						
+						<a href="productlist.jsp" class="btn btn-secondary">상품목록</a>
 			</div>
 
 		</div>

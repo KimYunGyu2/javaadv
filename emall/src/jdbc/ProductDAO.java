@@ -14,6 +14,7 @@ public class ProductDAO {
 	}
 	
 	
+	
 	public ArrayList<ProductDTO> getList()
 	throws NamingException, SQLException {
 		
@@ -74,7 +75,7 @@ public class ProductDAO {
 			String pmanu = rs.getString(5);
 			String pcate = rs.getString(6);
 			String pcondi = rs.getString(7);
-			String pimage = rs.getString(7);
+			String pimage = rs.getString(8);
 			
 			ProductDTO product = new ProductDTO(id, pname, pprice, pdesc, pmanu, pcate, pcondi, pimage);
 			
@@ -109,12 +110,16 @@ public class ProductDAO {
 				pstmt.setString(7, pcondi);
 				pstmt.setString(8, pimage);
 			int result = pstmt.executeUpdate();
-			return (result==1) ? true: false;
-		} finally {			
+			
+			return (result==1) ? true : false;			
+			
+		} finally {
 			if(pstmt != null) pstmt.close();
 			if(conn != null) conn.close();
 		}
-		
 	}
-
+	
+	
+	
+	
 }

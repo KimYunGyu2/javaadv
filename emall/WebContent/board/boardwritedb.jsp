@@ -10,14 +10,10 @@
 <%
 request.setCharacterEncoding("utf-8");
 // images 로 전체 데이터가 넘어옴
-
 String btitle = null;
 String bcontent = null;
 String bimage = null;
-
-
 byte[] bfile = null;
-
 ServletFileUpload sfu = new ServletFileUpload(new DiskFileItemFactory());
 // 추출 값들을 객체 형태로 저장할 준비
 List items = sfu.parseRequest(request);
@@ -32,7 +28,6 @@ while(iter.hasNext()) {  // 요소가 있으면 계속 반복 없으면 종료
         String value = item.getString("utf-8"); // 한글 처리 중요!!!
         if (name.equals("btitle")) btitle = value;
         else if (name.equals("bcontent")) bcontent = value;
-        
     }
     else {
         if (name.equals("images")) {
@@ -41,14 +36,13 @@ while(iter.hasNext()) {  // 요소가 있으면 계속 반복 없으면 종료
             //서버에 사진 저장
             String root = application.getRealPath(java.io.File.separator);
             FileUtil.saveImage(root, bimage, bfile);
-            
 	}
 }
 }
 //디비에 게시물 모든 정보 전달
 String buser = (String) session.getAttribute("id");
 BoardDAO dao = new BoardDAO();
-if (dao.insert(btitle, bcontent, buser)) {
+if (dao.insert(btitle, bcontent, buser, bimage)) {
 	response.sendRedirect("boardlist.jsp");
 }
 %>

@@ -56,5 +56,3 @@ if (dao.insert(pid, pname, pprice, pdesc, pmanu, pcate, pcondi, pimage)) {
 	response.sendRedirect("productlist.jsp");
 }
 %>
-
-%>

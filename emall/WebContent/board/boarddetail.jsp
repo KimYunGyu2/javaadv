@@ -2,12 +2,13 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <%
-	String uid  = (String) session.getAttribute("id");
+	String uid = (String) session.getAttribute("id");
 	if (uid == null) {
 		response.sendRedirect("/user/login.jsp");
 		return;
-	} // 세션 정보를 확인해서 로그인 상태인지 확인한 후 진입 허용
+	} //세션 정보를 확인해서 로그인 상태인지 확인한후 진입 허용 
 %>
 <!DOCTYPE html>
 <html>
@@ -39,26 +40,21 @@
 	BoardDTO board = (new BoardDAO()).getDetail(bid);
 	%>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-ma-5">
-				<img src="" style="width: 100%">
-			</div>
-			<div class="col-ma-6">
-				<h3><%=board.getBid()%></h3>
-				<p><%=board.getBtitle()%>
-				<p>
-					<b>내용 : <%=board.getBcontent()%></b>
-				<p>
-					<b>작성일자 : <%=board.getBdate()%></b> 
-				<p>	
-					<a href="boardlist.jsp"
-						class="btn btn-info">뒤로가기</a> <a href="/product/productlist.jsp"
-						class="btn btn-secondary">홈으로</a>
-			</div>
 
-		</div>
-	</div>
+<div class="container my-3">
+	<img src="/images/<%=board.getBimage() %>" style="width: 100%">
+
+    <h2 class="border-bottom py-2"><%=board.getBtitle() %></h2>
+    <div class="card my-3">
+        <div class="card-body">
+            <div class="card-text" style="white-space: pre-line;"><%=board.getBcontent() %></div>
+            <div class="d-flex justify-content-end">
+                <div class="badge bg-light text-dark p-2">
+                    <%=board.getBdate() %>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 	<%@ include file="/_footer.jsp"%>

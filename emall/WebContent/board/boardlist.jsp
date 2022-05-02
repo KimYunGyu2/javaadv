@@ -2,15 +2,17 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+	
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자유게시판</title>
+<title>게시판 목록</title>
 </head>
 <body>
 	<%!// 선언문
-	String title = "자유게시판";%>
+	String title = "게시판 목록";%>
 	<!-- CSS only -->
 	<link
 		href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -27,47 +29,57 @@
 		</div>
 	</div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">글번호</th>
-      <th scope="col">글제목</th>
-      <th scope="col">작성자</th>
-      <th scope="col">작성일자</th>
-    </tr>
-  </thead>
-  <tbody>
-  <%
+	<div class="container">
+		<div class="row" align="center">
+		
+
+		
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="table-dark">
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일시</th>
+        </tr>
+        </thead>
+        <tbody>
+
+		<%
 			ArrayList<BoardDTO> boards = (new BoardDAO()).getList();
 			
 		   for (BoardDTO board : boards) {
-			   %>
-    <tr>
-      <th scope="row"><%=board.getBid() %></th>
-      <td><p><a href="boarddetail.jsp?bid=<%=board.getBid() %>"><%=board.getBtitle() %></a></td>
-      <td><%=board.getBuser() %></td>
-      <td><%=board.getBdate() %></td>
-    </tr>
- <% } %>
-  </tbody>
-    
-</table>
-<form action = "boardwrite.jsp" align="ringt">
-<div class="form-group row" align="right">
-			<div class="col-sm-offset-5 col-sm-5">
-      <input type="submit" class="btn btn-dark" value="글쓰기 " >
-			</div>	
-			</div>
-			</form>
-		
 		%>
-		
-			</div>
+
+        <tr>
+<td><%=board.getBid() %></td>
+<td><a href = "boarddetail.jsp?bid=<%=board.getBid()%>"><%=board.getBtitle() %></td>
+<td><%=board.getBuser() %></td>
+<td><%=board.getBdate() %></td>
+        </tr>
+
+
+<% } %>
+
+
+        </tbody>
+    </table>
+    
+    <a href="/board/boardwrite.jsp">글쓰기</a>
+    
+</div>
+
+
+
 
 		
 
+
+
+		</div>
 		<hr>
-	
+	</div>
 
 
 

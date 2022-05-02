@@ -1,6 +1,9 @@
 package jdbc;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -30,7 +33,8 @@ public class BoardDAO {
 				boards.add(new BoardDTO(rs.getString("bid"),
 											rs.getString("btitle"),
 											rs.getString("bcontent"),
-											rs.getString("buser"),											
+											rs.getString("buser"),
+											rs.getString("bimage"),
 											rs.getString("bdate")));
 			}
 			return boards;
@@ -43,6 +47,8 @@ public class BoardDAO {
 		
 		
 	}
+	
+	
 	
 	
 	public BoardDTO getDetail(String bid) throws NamingException, SQLException {
@@ -60,13 +66,15 @@ public class BoardDAO {
 			
 			rs.next();
 			
-			String id = rs.getString(1);
+			bid = rs.getString(1);
 			String btitle = rs.getString(2);
 			String bcontent = rs.getString(3);
 			String buser = rs.getString(4);
-			String bdate = rs.getString(5);			
+			String bimage = rs.getString(4);
+			String bdate = rs.getString(5);
+
 			
-			BoardDTO board = new BoardDTO(id, btitle, bcontent, buser, bdate);
+			BoardDTO board = new BoardDTO(bid, btitle, bcontent, buser, bimage, bdate);
 			
 			return board;
 			
@@ -77,29 +85,33 @@ public class BoardDAO {
 	}
 	
 	}
-
-	public boolean insert(String btitle, String bcontent, String buser)
+	
+	
+	
+	
+	public boolean insert(String btitle, String bcontent, String buser, String bimage)
 	throws NamingException, SQLException {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
 		try {
-			String sql = "INSERT INTO board VALUES (?,?,?,?,?)";
+			String sql = "INSERT INTO board (btitle, bcontent, buser, bimage) VALUES (?,?,?,?)";
 			conn = ConnectionPool.get();
-			pstmt = conn.prepareStatement(sql);	
-				pstmt.setString(1, null);
-				pstmt.setString(2, btitle);
-				pstmt.setString(3, bcontent);
-				pstmt.setString(4, buser);			
-				pstmt.setString(5, LocalDate.now().toString());
-				
+			pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, btitle);
+				pstmt.setString(2, bcontent);
+				pstmt.setString(3, buser);
+				pstmt.setString(4, bimage);
 			int result = pstmt.executeUpdate();
-			return (result==1) ? true: false;
-		} finally {			
+			
+			return (result==1) ? true : false;			
+			
+		} finally {
 			if(pstmt != null) pstmt.close();
 			if(conn != null) conn.close();
 		}
-		
 	}
+	
+	
 }
